@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+    
+    tools {
+        nodejs 'Node'
+    }
+
+    environment {
+        JENKINS_ENV = 'your_secret_value'
+    }
+
+    stages {
+        // stage('Checkout') {
+        //     steps {
+        //         // Checkout the git repository
+        //         git 'https://github.com/jmelton15/jenkins_test.git'
+        //     }
+        // }
+        
+        stage('Install Dependencies') {
+            steps {
+                // Run npm install to install Node.js dependencies
+                sh 'npm install'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                // Run your Node.js script
+                sh 'node EnviornmentTestScripts/envTest.js'
+            }
+        }
+    }
+}
